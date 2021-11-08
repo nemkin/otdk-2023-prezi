@@ -34,9 +34,10 @@
 \captionsetup{format=plain, font=scriptsize, labelformat=empty}
 %
 
-
 % Notation setup
 \usepackage{physics} % Braket notation
+
+\usepackage{svg}
 
 \author{Nemkin Viktória}
 \institute{Konzulens: dr. Friedl Katalin}
@@ -49,7 +50,10 @@
 \frame{\titlepage}
 
 \begin{frame}
+
+%  \noindent\includesvg[inkscape=overwrite,width=100pt]{./figures/qi.svg}
   \frametitle{Gráfbolyongások}
+  
   \begin{itemize}
     \item Véletlen séta a gráf csúcsain (speciális Markov-lánc).
     \item Klasszikusan:
@@ -59,142 +63,180 @@
     \end{itemize}
     \item Kvantumosan:
     \begin{itemize}
-        \item Gyorsabb: $O(N)$ -> $O(\sqrt{N})$
-        \item 
+        \item Gyorsabb: $O(N) \rightarrow O(\sqrt{N})$
+        \item Kvantum párhuzamosság
+        \item Destruktív / konstruktív interferencia
+        \item Korszerű, ma is aktívan kutatott, nem letisztult / kidolgozott
     \end{itemize}
-    \item Kvantum gráfbolyongás: Próbáljuk meg kvantumosan!
-    \item Ki fog jönni, hogy teljesen más mint a klasszikus, gyorsabban bejárja (gyök(N) vs N) és másképp is viselkedik.
-    \item Kvantum párhuzamosság kihasználása.
-    \item Destruktív / konstruktív interferencia az egyes lépések között.
-    \item Korszerű, nem lezárt, tudományos vizsgálatok homlokterében.
   \end{itemize}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Kvantumérme}
-  \textbf{Kvantumbit}
-  \begin{itemize}
-    \item Lehet $\ket{0}$, $\ket{1}$ vagy $c_0\ket{0} + c_1\ket{1}$ (szuperpozíció)
+\begin{frame}{Kvantum hardver}
+    \begin{figure}
+        \includegraphics[width=0.8\linewidth]{./figures/ibm.png}
+        \caption{IBM Quantum: 5 qubit, 5 futtatás / nap}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Kvantumséták kutatása}
+    \begin{itemize}
+        \item Szimuláció klasszikus számítógépen
+        \item Szimulátor programok:
+            \begin{itemize}
+                \item Speciális esetek
+                \item Alacsony szintű programozási nyelv
+                \item Script-szerű, nem újfrafelhasználható / bővíthető, architektúra nélküli
+                \item Klasszikussal nem tud összehasonlítani
+                \item Eredmények vizualizációja hiányzik
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Feladat}
+
+\begin{columns}[t,onlytextwidth]
+    \begin{column}{.5\textwidth}
+      \begin{center}
+        \textbf{Mély elméleti matematikai}
+      \end{center}
+      \begin{itemize}
+          \item Markov-láncok, valószínűségszámítás
+          \item Gráfelméleti algoritmusok: körlefedés, teljes párosítás
+          \item Kvantuminformatika, komplex lineáris algebra
+          \item Kvantumséták: position-coin notation, arc notation, Szegedy-féle séta
+          \item Kvantummechanikából származtatva (Kempe): 1 dimenziós séta = részecske $\rightarrow$ hullámcsomag + spintől függő irány + detektálás valószínűsége
+      \end{itemize}
+    \end{column}
+    \begin{column}{.5\textwidth}
+      \begin{center}
+         \textbf{Kézzelfogható szoftvermérnöki}
+      \end{center}
+      \begin{itemize}
+          \item Architekturális tervezés: Strategy minta
+          \item Clean code elvek: Újrafelhasználhatóság, egységbe zárás, olvashatóság
+          \item Futásidő és memóriahasználat optimalizálása: Szomszédossági orákulum
+          \item Eszközök megválasztása:
           \begin{itemize}
-            \item 2 dimenziós vektor: $\begin{pmatrix} c_0 \\ c_1 \end{pmatrix}$
-            \item $\ket{0} = \begin{pmatrix} 1 \\ 0\end{pmatrix}$, $\ket{1} = \begin{pmatrix} 0 \\ 1\end{pmatrix}$
+            \item Nyelv: Python3
+            \item Lineáris algebrai műveletek: Numpy
+            \item Eredmények vizualizációja: Matplotlib
+            \item Report fájl generálása: Latex
           \end{itemize}
-          \pause
-    \item Megkötések:
-          \begin{itemize}
-            \item Koordináták komplexek
-            \item Egység hosszú: $|c_0|^2 + |c_1|^2 = 1$
-          \end{itemize}
-          \pause
-    \item Mérés eredménye: $\ket{0}$ vagy $\ket{1}$
-          \begin{itemize}
-            \item $P(\ket{0}) = |c_0|^2$
-            \item $P(\ket{1}) = |c_1|^2$
-          \end{itemize}
-  \end{itemize}
+      \end{itemize}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Kvantumérme}
-
-  \textbf{Hadamard-kapu} (mátrix)
-  \[\begin{pmatrix} c_0' \\ c_1'
-    \end{pmatrix} = \begin{pmatrix} \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}
-      \\ \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}\end{pmatrix} \cdot
-    \begin{pmatrix} c_0 \\ c_1 \end{pmatrix}\]
-
-  \pause
-  \textbf{Kvantumérme}\\
-  \begin{itemize}
-    \item Érme $=$ kvantumbit
-    \item Érme feldobása $=$ Hadamard-mátrixszal szorzás
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Kvantumérme}
-
-  Kiindulás:
-
-  \[\ket{0} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}\]
-  \pause
-  1. feldobás után:
-
-  \[\begin{pmatrix} \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}
-      \\ \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}\end{pmatrix} \cdot
-    \begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix}
-      \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}}
-    \end{pmatrix} \]
-  \pause
-  $\rightarrow$ Ha megmérnénk:
-
-  \[P(\ket{0}) = P(\ket{1}) = \left(\frac{1}{\sqrt{2}} \right)^2 = \frac{1}{2}\]
-
-
-\end{frame}
-
-\begin{frame}
-  \frametitle{Kvantumérme}
-
-  Majd:
-
-  \[\begin{pmatrix}
-      \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}}
-    \end{pmatrix}\]
-  \pause
-  2. feldobás után:
-
-  \[\begin{pmatrix} \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}
-      \\ \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}\end{pmatrix} \cdot
-    \begin{pmatrix} \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{pmatrix} = \begin{pmatrix}
-      1 \\ 0
-    \end{pmatrix} \]
-  \pause
-  $\rightarrow$ Ha megmérnénk:
-
-  \[P(\ket{0}) = 1, P(\ket{1}) = 0\]
-
-
-\end{frame}
-
-\begin{frame}
-  \frametitle{Egyenesen bolyongás}
-
-  \tikzset{axis line style/.style={thin, gray, -stealth}}
-
-  \newcommand*{\TickSize}{2pt}%
-
-  \begin{center}
-    \begin{tikzpicture}
-
-      \draw [axis line style] (-6.5,0) -- (6.5,0);
-
-      \foreach \x in {-6,-5,...,6} {%
-          \draw ($(\x,0) + (0,-\TickSize)$) -- ($(\x,0) + (0,\TickSize)$)
-          node [below=0.1cm] {$\x$};
-        }
-
-      \draw[draw, fill=black] (0,0) circle (0.05);
-
-      \draw[->] (0.1,0.5) -- (1,0.5) node [above=0.1cm] {$\ket{1}$};
-      \draw[->] (-0.1,0.5) -- (-1,0.5) node [above=0.1cm] {$\ket{0}$};
-    \end{tikzpicture}
-
-
-  \end{center}
-  Érme szuperpozícióban lesz $\rightarrow$ ,,egyszerre'' megyünk mindkét irányba.
-
-  \pause
-  $\rightarrow$ Sok lépés után: mi a pozíció eloszlása?
-
-\end{frame}
-
-\begin{frame}
-  \frametitle{Egyenesen bolyongás}
+  \frametitle{1 dimenziós séta}
   \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\linewidth]{./figures/teve.png}
   \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Kvantumérme}
+ 
+  \begin{columns}[t,onlytextwidth]
+    \begin{column}{.5\textwidth}
+     \begin{itemize}
+    \item Kvantum regiszer: $\ket{c} \rightarrow$ \\ Érme aktuális állapota
+    \item Evolúció operátor: $\ket{C} \rightarrow$
+  \end{itemize}
+      \begin{center}
+    
+    \textbf{Fourier} ($\omega = e^{\frac{2\pi{}i}{N}}$)
+
+        \addvspace{10pt}
+
+$\frac{1}{\sqrt{N}}
+\begin{pmatrix}
+  1 & 1 & 1 & \dots & 1 \\
+  1 & \omega & \omega^2 & \dots & \omega^{N-1} \\
+  1 & \omega^2 & \omega^4 & \dots & \omega^{2(N-1)} \\
+  \vdots & \vdots & \vdots & \ddots & \vdots \\
+  1 & \omega^{N-1} & \omega^{2(N-1)} & \dots & \omega^{(N-1)(N-1)}
+\end{pmatrix}
+$
+    
+    
+    
+      \end{center}
+
+    \end{column}
+    \begin{column}{.5\textwidth}
+        \begin{center}
+        
+         \textbf{Hadamard}
+        
+        \addvspace{10pt}
+        
+$
+   \mathbf{H} = \begin{pmatrix}
+      \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}  \\
+      \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+    \end{pmatrix}$
+
+        \addvspace{10pt}
+        
+$\mathbf{H_n} = \mathbf{H}^{\otimes{}n}$
+
+
+        \addvspace{10pt}
+        
+\textbf{Grover}
+        
+        \addvspace{10pt}
+        
+$
+\begin{pmatrix}
+      \frac{2}{N} - 1 & \frac{2}{N} & \dots  & \frac{2}{N} \\
+      \frac{2}{N} & \frac{2}{N} - 1 & \dots  & \frac{2}{N} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      \frac{2}{N} & \frac{2}{N} & \ddots & \frac{2}{N} - 1
+    \end{pmatrix}
+$
+
+
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}{Kvantum lépés a gráfon: Saját munkám}
+\begin{itemize}
+    \item \textbf{Több egydimenziós érme + kvantum shift operátor $\rightarrow$ n dimenziós rács}
+    \begin{itemize}
+        \item Bizonyítottam, hogy a kvantum shift operátor felbomlik $n$ darab független $2$ dimenziós operátorra.
+        \item Ezt felhasználva a memóriaigény lecsökkenthető:
+        \begin{itemize}
+            \item A $d$-től nem exponenciálisan, csak lineárisan függ.
+            \item A futásidőt $d$-szeresére növelve a memóriaigény $d$-ben konstans.
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Egy többdimenziós érme $\rightarrow$ d-reguláris gráf}
+    \begin{itemize}
+        \item Explicit unitér mátrixos felírás (függvények és implicit helyett).
+        \item Bizonyítás: Shift operátor a gráf körlefedéséből (élszínosztályokból) kiindulva konstruálható
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Szimulátor szoftver}
+\begin{figure}
+        \includegraphics[width=\textwidth]{./tdk_figures/program/uml.png}
+        \caption{UML}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Szimulátor szoftver}
+\begin{itemize}
+    \item Klasszikus és kvantum összehasonlítása
+    \item Eredmény grafikonok
+\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -216,24 +258,6 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Klasszikus séták}
-    \begin{itemize}
-        \item Markov-láncok megfelelői
-        \item Gráf csúcsai = val.vál. értékek
-        \item Gráf szomszédossági mátrixa = átmeneti valószínűségi mátrix
-        \item Hitting time, mixing time
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Kvantum posztulátumok}
-\begin{itemize}
-\item Qubit
-\item Evolúció
-\item Mérés
-\item Regiszer
-\end{itemize}
-\end{frame}
-
 \begin{frame}
   \frametitle{Szimuláció: Egyenesen bolyongás}
 
@@ -252,13 +276,6 @@
       \end{figure}
     \end{column}
   \end{columns}
-\end{frame}
-
-\begin{frame}{Szimulátor program}
-\begin{figure}
-        \includegraphics[width=\textwidth]{./tdk_figures/program/uml.png}
-        \caption{UML}
-\end{figure}
 \end{frame}
 
 \begin{frame}{Egyenesen bolyongás}
@@ -359,6 +376,14 @@
     \begin{column}{.25\textwidth}
     \end{column}
   \end{columns}
+\end{frame}
+
+\begin{frame}{Eredmények, kitekintés}
+\begin{itemize}
+    \item Kvantumséta shift operátor konstrukció, bizonyítással
+    \item Szimulátor szoftver: \url{github.com/nemkin/quantum} (open source, MIT licensz)
+    \item Gyakorlati felhasználás kvantumos kereséshez
+\end{itemize}
 \end{frame}
 
 \end{document}
