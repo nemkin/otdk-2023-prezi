@@ -37,7 +37,9 @@
 % Notation setup
 \usepackage{physics} % Braket notation
 
+% Add qi.svg logo
 \usepackage{svg}
+\usepackage[absolute,overlay]{textpos}
 
 \author{Nemkin Viktória}
 \institute{Konzulens: dr. Friedl Katalin}
@@ -50,8 +52,6 @@
 \frame{\titlepage}
 
 \begin{frame}
-
-%  \noindent\includesvg[inkscape=overwrite,width=100pt]{./figures/qi.svg}
   \frametitle{Gráfbolyongások}
   
   \begin{itemize}
@@ -350,6 +350,11 @@ $
     \item Szimulátor szoftver: \url{github.com/nemkin/quantum} (open source, MIT licensz)
     \item Gyakorlati felhasználás kvantumos kereséshez
 \end{itemize}
+
+\begin{textblock*}{150pt}(280pt,200pt) % {block width} (coords)
+\includesvg[inkscape=overwrite,width=150pt]{./figures/qi.svg}
+\end{textblock*}
+
 \end{frame}
 
 \end{document}
