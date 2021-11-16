@@ -41,15 +41,27 @@
 \usepackage{svg}
 \usepackage[absolute,overlay]{textpos}
 
-\author{Nemkin Viktória}
-\institute{Konzulens: dr. Friedl Katalin}
-\title{Kvantumséták szimulációja klasszikus számítógépen}
-\subtitle{TDK (2021)}
+% Newline in cell
+\usepackage{makecell}
+
+\author[Nemkin Viktória]{Nemkin Viktória}
+\institute[]{
+\begin{small}dr. Friedl Katalin\end{small}\\
+\begin{footnotesize}Számítástudományi és Információelméleti Tanszék\end{footnotesize}
+}
+\title{Kvantumséták szimulációja}
+\subtitle{klasszikus számítógépen}
 \date{}
 
 \begin{document}
 
-\frame{\titlepage}
+\begin{frame}
+\titlepage
+
+\begin{textblock*}{150pt}(280pt,200pt) % {block width} (coords)
+\includesvg[inkscape=overwrite,width=150pt]{./figures/qi.svg}
+\end{textblock*}
+\end{frame}
 
 \begin{frame}
   \frametitle{Gráfbolyongások}
@@ -63,7 +75,7 @@
     \end{itemize}
     \item Kvantumosan:
     \begin{itemize}
-        \item Gyorsabb: $O(N) \rightarrow O(\sqrt{N})$
+        \item Gyorsabb: $O(N^2) \rightarrow O(N)$ (elérés a szélére)
         \item Kvantum párhuzamosság
         \item Destruktív / konstruktív interferencia
         \item Korszerű, ma is aktívan kutatott, nem letisztult / kidolgozott
@@ -71,25 +83,61 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Kvantum hardver}
-    \begin{figure}
-        \includegraphics[width=0.8\linewidth]{./figures/ibm.png}
-        \caption{IBM Quantum: 5 qubit, 5 futtatás / nap}
-    \end{figure}
-\end{frame}
-
 \begin{frame}{Kvantumséták kutatása}
-    \begin{itemize}
-        \item Szimuláció klasszikus számítógépen
-        \item Szimulátor programok:
-            \begin{itemize}
-                \item Speciális esetek
-                \item Alacsony szintű programozási nyelv
-                \item Script-szerű, nem újfrafelhasználható / bővíthető, architektúra nélküli
-                \item Klasszikussal nem tud összehasonlítani
-                \item Eredmények vizualizációja hiányzik
-            \end{itemize}
-    \end{itemize}
+\begin{scriptsize}
+Kvantum hardver: kevés qubit $\rightarrow$ Szimuláció klasszikus számítógépen
+\begin{table}
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+  Package
+& Frissítve
+& Architektúra
+& Gráfok
+& \makecell[l]{Klasszikus\\szimuláció?}
+& Kezdők számára?
+\\ \hline
+
+  \href{https://github.com/QWalk/mainline}{\color{blue}QWalk}
+& 2018
+& \makecell[l]{C++, optimalizációra\\kihegyezett}
+& \makecell[l]{rács\\molekula-\\szerkezet}
+& \makecell[c]{\texttimes}
+& \makecell[l]{\texttimes: kvantum Monte\\Carlo elektronstruktúra\\számítások}
+\\ \hline
+
+  \href{https://github.com/Haixing-Hu/qwViz/}{\color{blue}QwViz}
+& 2016
+& C, szkript jellegű
+& \makecell[l]{irányítatlan\\gráfok, mátrix\\kézzel megadva}
+& \makecell[c]{\texttimes}
+& \makecell[l]{\texttimes: C forráskód technikai}
+\\ \hline
+
+  \href{https://github.com/hiperwalk/hpwalk}{\color{blue}Hiperwalk}
+& 2017\footnote{\scriptsize{}2021: Python 2 $\rightarrow$ 3 átállás}
+& \makecell[l]{Python \& Neblina, szkript\\jellegű, nested if-ek}
+& \makecell[l]{egyenes, kör\\rács, tórusz}
+& \makecell[c]{\texttimes}
+& \makecell[l]{\checkmark: saját bemeneti nyelv,\\de bővíteni nehéz}
+\\ \hline
+
+\href{https://github.com/iitis/QuantumWalk.jl}{\color{blue}QuantumWalk.jl}
+& 2020
+& \makecell[l]{Julia, szép architektúra\\de: Szegedy-féle sétára}
+& \makecell[l]{irányított gráfok}
+& \makecell[c]{\texttimes}
+& \checkmark
+
+
+\end{tabular}
+\end{table}
+
+Nem diszkrét séták:
+\begin{itemize}
+\item \href{https://github.com/josh146/pyctqw}{\color{blue}PyCTQW}: 2014, csak folytonos idejű szimuláció
+\item \href{https://github.com/iitis/QSWalk.jl}{\color{blue}QSWalk.jl}: 2020, csak quantum stochastic walk szimuláció (generalizáció)
+\end{itemize}
+
+\end{scriptsize}
 \end{frame}
 
 \begin{frame}{Feladat}
@@ -97,19 +145,19 @@
 \begin{columns}[t,onlytextwidth]
     \begin{column}{.5\textwidth}
       \begin{center}
-        \textbf{Mély elméleti matematikai}
+        \textbf{Elméleti matematikai}
       \end{center}
       \begin{itemize}
           \item Markov-láncok, valószínűségszámítás
           \item Gráfelméleti algoritmusok: körlefedés, teljes párosítás
           \item Kvantuminformatika, komplex lineáris algebra
-          \item Kvantumséták: position-coin notation, arc notation, Szegedy-féle séta
+          \item Diszkrét idejű kvantumséták: position-coin notation, (arc notation, Szegedy-féle séta)
           \item Kvantummechanikából származtatva (Kempe): 1 dimenziós séta = részecske $\rightarrow$ hullámcsomag + spintől függő irány + detektálás valószínűsége
       \end{itemize}
     \end{column}
     \begin{column}{.5\textwidth}
       \begin{center}
-         \textbf{Kézzelfogható szoftvermérnöki}
+         \textbf{Szoftvermérnöki}
       \end{center}
       \begin{itemize}
           \item Architekturális tervezés: Strategy minta
@@ -131,7 +179,7 @@
   \frametitle{1 dimenziós séta}
   \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\linewidth]{./figures/teve.png}
+    \includegraphics[width=0.9\linewidth]{./figures/teve.jpg}
   \end{figure}
 \end{frame}
 
@@ -194,7 +242,7 @@ $
       \frac{2}{N} - 1 & \frac{2}{N} & \dots  & \frac{2}{N} \\
       \frac{2}{N} & \frac{2}{N} - 1 & \dots  & \frac{2}{N} \\
       \vdots & \vdots & \ddots & \vdots \\
-      \frac{2}{N} & \frac{2}{N} & \ddots & \frac{2}{N} - 1
+      \frac{2}{N} & \frac{2}{N} & \vdots & \frac{2}{N} - 1
     \end{pmatrix}
 $
 
@@ -205,7 +253,7 @@ $
 \end{frame}
 
 
-\begin{frame}{Kvantum lépés a gráfon: Saját munkám}
+\begin{frame}{Kvantum shift operátor: Saját munkám}
 \begin{itemize}
     \item \textbf{Több egydimenziós érme + kvantum shift operátor $\rightarrow$ n dimenziós rács}
     \begin{itemize}
@@ -221,31 +269,6 @@ $
         \item Explicit unitér mátrixos felírás (függvények és implicit helyett).
         \item Bizonyítás: Shift operátor a gráf körlefedéséből (élszínosztályokból) kiindulva konstruálható
     \end{itemize}
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}{Szimulátor szoftver architektúrája}
-\begin{figure}
-        \includegraphics[width=\textwidth]{./tdk_figures/program/strategy.png}
-        \caption{UML}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Szimulátor szoftver}
-\begin{figure}
-        \includegraphics[width=\textwidth]{./tdk_figures/program/uml.png}
-        \caption{UML}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Szimulátor szoftver}
-\begin{itemize}
-    \item Klasszikus és kvantum összehasonlítása
-    \item Python, Numpy, Matplotlib, Latex
-    \item Szomszédossági orákulum
-    \item Latex report: szomszédossági mátrix, szimulációs eloszlás, sajátértékek, sajátvektorok, elérési és keveredési idő
-    \item Kísérletileg kimutattam: Visszatérés, ballisztikus viselkedés
 \end{itemize}
 \end{frame}
 
@@ -288,7 +311,7 @@ $
   \end{columns}
 \end{frame}
 
-\begin{frame}{Griden bolyongás}
+\begin{frame}{Rácson bolyongás}
 
   \begin{columns}[onlytextwidth]
     \begin{column}{.23\textwidth}
@@ -344,16 +367,35 @@ $
   \end{columns}
 \end{frame}
 
-\begin{frame}{Eredmények, kitekintés}
+\begin{frame}{Kitekintés}
 \begin{itemize}
-    \item Kvantumséta shift operátor konstrukció, bizonyítással
     \item Szimulátor szoftver: \url{github.com/nemkin/quantum} (open source, MIT licensz)
-    \item Gyakorlati felhasználás kvantumos kereséshez
+    \item Kutatási irány:
+    \begin{itemize}
+        \item kvantumséta alapú keresési algoritmus
+        \item klasszikusan NP-teljes problémák (protein folding) megoldására
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Bíráló kérdései}
+
+\begin{itemize}
+    \item Miként értelmezhető a hitting time ábrákon a görbék folytonossága a vízszintes tengely mentén?
+     \begin{figure}[H]
+        \includegraphics[width=0.6\linewidth]{./tdk_figures/results/hypercube/hadamard_hitting_time.jpg}
+      \end{figure}
 \end{itemize}
 
-\begin{textblock*}{150pt}(280pt,200pt) % {block width} (coords)
-\includesvg[inkscape=overwrite,width=150pt]{./figures/qi.svg}
-\end{textblock*}
+\end{frame}
+
+
+\begin{frame}{Bíráló kérdései}
+
+\begin{itemize}
+    \item Mi a TDK dolgozat elsődleges célja? A kvantumséta kutatása, vagy egy szimulátor írása, amely alkalmas a kvantumsétákkal kapcsolatos kutatások támogatására?
+    \item "Mátrix elemzés" a szerző által ismert szimulátorokról a dolgozatban javasolt 5 értékelési szempont alapján.
+\end{itemize}
 
 \end{frame}
 
