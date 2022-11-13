@@ -31,7 +31,8 @@
 
 % Style setup
 \usepackage{caption}
-\captionsetup{format=plain, font=scriptsize, labelformat=empty}
+\usepackage{subcaption}
+\captionsetup{format=plain, font=footnotesize, labelformat=empty}
 %
 
 % Notation setup
@@ -66,21 +67,30 @@
 
 \begin{frame}{Motiváció: Protein folding kvantuszámítógépen}
 
-\begin{tiny}
-\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{itemize}
+    \item Protein lánc beágyazása 3D rács pontjaiba.
+    \item Orákulum: Egymás mellé kerülő csúcsok energiaviszonyának lepontozása.
+    \item Grover keresés: Energiaminimum megtalálása.
+    \item Operátorok: Hadmard, Grover, WeightedAdder, Multi-Controlled NOT.
+\end{itemize}
 
-Met & Phe & Asp & Ala & Arg & Leu & Val & Gln & Gly & Ser & Ile & Leu & Lys & Lys & Val & Leu & Asp & Ala & Leu \\
+\end{column}
+\begin{column}{0.5\textwidth}
+    \begin{center}
+     \includegraphics[width=\textwidth]{./figures/Protein-folds-with-length-36-amino-acids-18-contacts.png}
+     \end{center}
+\end{column}
+\end{columns}
 
-\hline
-H & H & P & H & P & H & H & P & H & P & H & H & P & P & H & H & P & H & H
-\end{tabular}
-\end{tiny}
+\end{frame}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\linewidth]{./figures/protein_structure_primary.png}
-    \caption{PCNA}
-  \end{figure}
+
+\begin{frame}{Probléma: Memóriafelhasználás}
+\begin{itemize}
+    \item Operátorok exponenciálisan sok memóriát fogyasztanak.
+\end{itemize}
 \end{frame}
 
 \end{document}
