@@ -33,6 +33,7 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \captionsetup{format=plain, font=footnotesize, labelformat=empty}
+\usepackage{colortbl}
 %
 
 % Notation setup
@@ -81,7 +82,7 @@
     \item \textbf{Kódolás}:
     \begin{itemize}
         \item Origóból indul.
-        \item Lépésenként 6 irány = 6 qubit.
+        \item Lépésenként $6$ irány $=$ $6$ ''qubit''.
     \end{itemize}
     \item \textbf{Orákulum}: 
     \begin{itemize}
@@ -105,11 +106,102 @@
 
 \end{frame}
 
-
-\begin{frame}{Probléma: Memóriafelhasználás}
+\begin{frame}[t]{Probléma: Memóriahasználat}
+\vspace{2mm}
+\begin{tabular}{r|r|r|r}
+Lánc & Qubitek & Regiszter & Operátor \\
+\hline
+\rule{0pt}{1.05\normalbaselineskip} $n$ & $6(n-1)$ & $2^{6(n-1)} \cdot{} 16 B$ & ${2^{12(n-1)}} \cdot{} 16 B$  \pause{} \\
+\hline
+2 & 6 &  1 KB &  64 KB \\
+3 & 12 &  64 KB &  256 MB \\
+4 & 18 &  4 MB & \color{red} 1 TB \\
+5 & 24 &  256 MB & \color{red} 4 PB \\
+6 & 30 &  16 GB & \color{red} 16384 PB \\
+7 & 36 & \color{red} 1 TB & \color{red} 67108864 PB
+\end{tabular}
+\pause
+\vspace{2mm}
 \begin{itemize}
-    \item Operátorok exponenciálisan sok memóriát fogyasztanak.
+    \item Optimalizációk (regiszer és operátor esetében is):
+    \begin{itemize}
+        \item Ritka mátrixos tárolás.
+        \begin{itemize}
+          \item IBM Qiskit, Google Cirq, stb.
+          \item Kevés, esetleges.
+        \end{itemize}
+        \item Döntési fa alapú adatszerkezet.
+        \begin{itemize}
+            \item Néhány éves cikkek.
+        \end{itemize}
+    \end{itemize}
 \end{itemize}
+
+\end{frame}
+
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+
+\begin{frame}[t]{Megoldás: ''On-the-fly'' és ''Függvény-alapú'' operátorok}
+\vspace{2mm}
+\begin{tabular}{r|r|r|r|r|r}
+Lánc & Qubitek & Regiszter & Operátor &  \cellcolor{applegreen!30} ''On-the-fly'' &  \cellcolor{applegreen!30} ''Függvény-alapú'' \\
+\hline
+\rule{0pt}{1.05\normalbaselineskip} $n$ & $6(n-1)$ & $2^{6(n-1)} \cdot{} 16 B$ & ${2^{12(n-1)}} \cdot{} 16 B$ &  = Regiszter. &   Nem kell tárolni. \\
+\hline
+2 & 6 &  1 KB &  64 KB &  1 KB & 0 B \\
+3 & 12 &  64 KB &  256 MB &  64 KB & 0 B \\
+4 & 18 &  4 MB & \color{red} 1 TB &  4 MB & 0 B  \\
+5 & 24 &  256 MB & \color{red} 4 PB &  256 MB & 0 B \\
+6 & 30 &  16 GB & \color{red} 16384 PB &  16 GB & 0 B\\
+7 & 36 & \color{red} 1 TB & \color{red} 67108864 PB & \color{red} 1 TB & 0 B
+\end{tabular}
+\pause
+\vspace{2mm}
+\begin{itemize}
+    \item Qiskit, stb. nyílt forráskódúak...
+    \item ...de szerves része a kódnak az operátor tárolása
+    \item $\rightarrow$ saját szimulátor implementáció.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Regiszterkezelés}
+
+
+
+\end{frame}
+
+\begin{frame}{''On-the-fly'' operátorok}
+
+
+
+\end{frame}
+
+
+\begin{frame}{''Függvény-alapú'' operátorok}
+
+
+
+\end{frame}
+
+\begin{frame}{Összegzés}
+
+\begin{itemize}
+\item Eredmények:
+\begin{itemize}
+    \item Ritka mátrixosan tárolt regiszerek.
+    \item Regiszerkezelés tetszőleges célregiszerekkel.
+    \item ''On-the-fly'' operátorok: Hadamard, Grover.
+    \item ''Függvény-alapú'' operátorok: Sum, Multi-Controlled NOT.
+    \item Könnyű bővíthetőség új operátorral.
+\end{itemize}
+\item Jövőbeli terv:
+\begin{itemize}
+    \item Protein folding algoritmus implementálása.
+    \item Döntési fa alapú tárolás kipróbálása.
+\end{itemize}
+\end{itemize}
+
 \end{frame}
 
 \end{document}
