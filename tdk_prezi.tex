@@ -66,21 +66,40 @@
 
 
 \begin{frame}{Motiváció: Protein folding kvantuszámítógépen}
-
 \begin{columns}
-\begin{column}{0.5\textwidth}
+\begin{column}{0.45\textwidth}
 \begin{itemize}
-    \item Protein lánc beágyazása 3D rács pontjaiba.
-    \item Orákulum: Egymás mellé kerülő csúcsok energiaviszonyának lepontozása.
-    \item Grover keresés: Energiaminimum megtalálása.
-    \item Operátorok: Hadmard, Grover, WeightedAdder, Multi-Controlled NOT.
+    \item \textbf{Protein}:
+    \begin{itemize}
+        \item Aminosavakból alkotott lánc.
+        \begin{itemize}
+          \item \color{red} Piros = Hidrofób (''vízkerülő'').
+          \item \color{blue} Kék = Poláris (''vízszerető'').
+        \end{itemize}
+        \item 3D kockarácson elhelyezve.
+    \end{itemize}
+    \item \textbf{Kódolás}:
+    \begin{itemize}
+        \item Origóból indul.
+        \item Lépésenként 6 irány = 6 qubit.
+    \end{itemize}
+    \item \textbf{Orákulum}: 
+    \begin{itemize}
+        \item Energiaviszonyok lepontozása.
+    \end{itemize}
+    \item \textbf{Grover keresés}:
+    \begin{itemize}
+        \item Energiaminimum megtalálása.
+        \item ''Kvantum párhuzamosság''-ot kihasználva.
+    \end{itemize}
 \end{itemize}
-
 \end{column}
-\begin{column}{0.5\textwidth}
-    \begin{center}
-     \includegraphics[width=\textwidth]{./figures/Protein-folds-with-length-36-amino-acids-18-contacts.png}
-     \end{center}
+\begin{column}{0.55\textwidth}
+\begin{figure}[H]
+\center
+\includegraphics[width=0.8\textwidth]{./figures/Protein-folds-with-length-36-amino-acids-18-contacts.png}
+\caption{Egy ''összehajtogatott'' protein.}
+\end{figure}
 \end{column}
 \end{columns}
 
