@@ -388,23 +388,16 @@ Példa: $A_{4\times{}4}$ ($2$ qubites) operátor.
 
 \begin{frame}{Operátorok megvalósítása}
 
-Megvalósítás:
+\textbf{Megvalósítás}:
 
 \begin{itemize}
-    \item Visitor minta (inverzió):
+    \item Inverzió (Visitor minta):
     \begin{itemize}
         \item Operátornak odaadom a regisztert, végrehajtja magát rajta.
-        \item Belső működés eltakarva: mátrix reprezentáció nem szükséges.
+        \item Belső működés eltakarva $\rightarrow$ mátrix reprezentáció nem szükséges $\rightarrow$ memória spórolás.
     \end{itemize}
-    \item Strategy minta:
+    \item Operátor típusok:
     \begin{itemize}
-    \item Egységes algoritmus interfész: több lehetséges implementáció.
-    \end{itemize}
-    \item Operátor csak egy handle, példány nem foglal memóriát.
-\end{itemize}
-
-Végrehajtás:
-\begin{itemize}
     \item "On-the-fly" operátorok:
     \begin{itemize}
         \item A mátrix egy sorát generálom $\rightarrow$ skalárszorzás.
@@ -416,8 +409,13 @@ Végrehajtás:
         \item Sum: $\sum: \ket{0\dots{}0,\text{in}} \rightarrow \ket{\text{count}(\text{in}),\text{in}}$
         \item MC-NOT: $\text{mcnot}: \ket{0,\text{in}} \rightarrow \ket{\text{any}(\text{in}),\text{in}}$
     \end{itemize}
+    \end{itemize}
+    \item Strategy minta:
+    \begin{itemize}
+    \item Egységes algoritmus interfész: több lehetséges implementáció.
+    \end{itemize}
+    \item Operátor csak egy ''handle'', példány nem foglal memóriát.
 \end{itemize}
-
 
 \end{frame}
 
@@ -444,7 +442,7 @@ Végrehajtás:
 
 \begin{itemize}
     \item Protein folding algoritmus implementálása.
-    \item Döntési fa alapú tárolás kipróbálása.
+    \item Döntési fa alapú regisztertárolás kipróbálása.
 \end{itemize}
 
 \end{frame}
