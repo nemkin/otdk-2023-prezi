@@ -284,21 +284,21 @@ Lánc & Qubitek & Regiszter & Operátor &  \cellcolor{applegreen!30} ''On-the-fl
 \begin{frame}{Operátor végrehajtás általánosan}
 
 Példa: $A_{4\times{}4}$ ($2$ qubites) operátor.
-
+\vspace{0.5cm}
 \begin{columns}
   \begin{column}[t]{0.25\textwidth}
   \end{column}
   \begin{column}[t]{0.2\textwidth}
     Első 2 qubit-re:
     \begin{gather*}
-      \ket{\blacksquare{}\blacksquare{}\square{}\dots{}\square} \\
+      \ket{\blacksquare{}\blacksquare{}\square{}\dots{}\square{}} \\
       \Downarrow \\
       \begin{pmatrix}
         A & 0  & \dots{} & 0 \\
        0 & A  & \dots{} & 0 \\ 
        \vdots{} & \vdots{}  & \ddots{} & \vdots{} \\
        0 & 0  & \dots{} & A \\
-     \end{pmatrix}
+     \end{pmatrix} \\
      \searrow
     \end{gather*}
   \end{column}
@@ -307,28 +307,23 @@ Példa: $A_{4\times{}4}$ ($2$ qubites) operátor.
   \begin{column}[t]{0.2\textwidth}
     Utolsó 2 qubit-re:
     \begin{gather*}
-      \ket{\square{}\dots{}\square\blacksquare{}\blacksquare{}} \\
-      \Downarrow \\
+      \ket{\square{}\dots{}\square{}\blacksquare{}\blacksquare{}} \\
+      \Downarrow \\[16pt]
       \begin{pmatrix}
-           A_{(0,0)} I & A_{(0,1)} I  \\
-           A_{(1,0)} I & A_{(1,1)} I  \\
-      \end{pmatrix}
-      \swarrow
-
-      \end{gather*}
+        A_{0,0} I & A_{0,1} I  \\
+        A_{1,0} I & A_{1,1} I  \\
+      \end{pmatrix} \\[16pt]
+     \swarrow
+    \end{gather*}
   \end{column}
   \begin{column}[t]{0.25\textwidth}
   \end{column}
   \end{columns}
 
-
-
-TODO:
-\begin{itemize}
-    \item Első két qubitra.
-    \item Utolsó két qubitra.
-    \item Köztes esetek: ebből van sok.
-\end{itemize}
+\begin{center}
+  Köztes esetek?\\
+  $\ket{\square{}\dots{}\square{}\blacksquare{}\square{}\dots{}\square{}\blacksquare{}\square{}\dots{}\square{}} $
+\end{center}
 
 \end{frame}
 
