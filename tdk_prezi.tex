@@ -66,9 +66,9 @@
 \end{frame}
 
 
-\begin{frame}{Motiváció: Protein folding kvantuszámítógépen}
+\begin{frame}{Motiváció: "Protein folding" megoldása kvantumalgoritmussal}
 \begin{columns}
-\begin{column}{0.45\textwidth}
+\begin{column}{0.55\textwidth}
 \begin{itemize}
     \item \textbf{Protein}:
     \begin{itemize}
@@ -77,33 +77,43 @@
           \item \color{red} Piros = Hidrofób (''vízkerülő'').
           \item \color{blue} Kék = Poláris (''vízszerető'').
         \end{itemize}
-        \item 3D kockarácson elhelyezve.
+        \item Hajtogatás: 3D kockarácson elhelyezés.
+        \item Cél: Minimális energiájú elhelyezés megtalálása.
     \end{itemize}
     \item \textbf{Kódolás}:
     \begin{itemize}
-        \item Origóból indul.
-        \item Lépésenként $6$ irány $=$ $6$ ''qubit''.
+        \item Origóból, lépésenként $6$ irány $=$ $6$ ''qubit''.
     \end{itemize}
     \item \textbf{Orákulum}: 
     \begin{itemize}
         \item Energiaviszonyok lepontozása.
     \end{itemize}
-    \item \textbf{Grover keresés}:
+    \item \textbf{Grover keresés: $O(\sqrt{N})$}
     \begin{itemize}
-        \item Energiaminimum megtalálása.
         \item ''Kvantum párhuzamosság''-ot kihasználva.
+        \item Energiaminimum megtalálása.
     \end{itemize}
 \end{itemize}
 \end{column}
-\begin{column}{0.55\textwidth}
+\begin{column}{0.45\textwidth}
 \begin{figure}[H]
 \center
-\includegraphics[width=0.8\textwidth]{./figures/Protein-folds-with-length-36-amino-acids-18-contacts.png}
-\caption{Egy ''összehajtogatott'' protein.}
+\includegraphics[width=\textwidth]{./figures/Protein-folds-with-length-36-amino-acids-18-contacts.png}
+\caption{Egy összehajtogatott protein.}
 \end{figure}
 \end{column}
 \end{columns}
 
+\end{frame}
+
+\begin{frame}[t]{Cél}
+
+\begin{itemize}
+    \item Algoritmus kipróbálása és elemzése.
+    \item Eszköztár: Regiszterek + Hadamard, Grover, Sum, MC-NOT
+    \item Kvantumszámítógép: Publikusan nem elérhető (elég nagy).
+    \item Klasszikus szimuláció: Túl sok memóriát fogyaszt.
+\end{itemize}
 \end{frame}
 
 \begin{frame}[t]{Probléma: Memóriahasználat}
@@ -125,14 +135,15 @@ Lánc & Qubitek & Regiszter & Operátor \\
 \begin{itemize}
     \item Optimalizációk (regiszer és operátor esetében is):
     \begin{itemize}
-        \item Ritka mátrixos tárolás.
+        \item Ritka mátrixos tárolás:
         \begin{itemize}
           \item IBM Qiskit, Google Cirq, stb.
-          \item Kevés, esetleges.
+          \item Nem mindig ritkák a mátrixok.
         \end{itemize}
-        \item Döntési fa alapú adatszerkezet.
+        \item Döntési fa alapú adatszerkezet:
         \begin{itemize}
-            \item Néhány éves cikkek.
+            \item Újabb kutatási irány.
+            \item Nem mindig segít.
         \end{itemize}
     \end{itemize}
 \end{itemize}
@@ -159,7 +170,7 @@ Lánc & Qubitek & Regiszter & Operátor &  \cellcolor{applegreen!30} ''On-the-fl
 \vspace{2mm}
 \begin{itemize}
     \item Qiskit, stb. nyílt forráskódúak...
-    \item ...de szerves része a kódnak az operátor tárolása
+    \item ...de szerves része a kódnak az operátor tárolása.
     \item $\rightarrow$ saját szimulátor implementáció.
 \end{itemize}
 
@@ -170,8 +181,42 @@ Lánc & Qubitek & Regiszter & Operátor &  \cellcolor{applegreen!30} ''On-the-fl
 
 \begin{itemize}
     \item Minden bitsorozathoz egy komplex valószínűségi amplítúdó.
-    \item Szuperpozíció és összefonódás $\rightarrow$ több regiszterre ezek Descartes-szorzatát kell tárolni.
+    \item Szuperpozíció és összefonódás $\rightarrow$ indexek Descartes-szorzata.
+    \item TODO: $2^{n_1}, \dots{}, 2^{n_s} \rightarrow \prod\limits_{i=1}^{s}2^{n_i}$.
 \end{itemize}
+
+
+\begin{tikzpicture}
+
+\end{tikzpicture}
+
+
+\begin{tikzpicture}[
+    rect/.style={rectangle,,draw=black,text width=.5cm,text height=.25cm},
+    none/.style={rectangle,draw=gray!20,text width=.5cm,text height=.25cm},
+    nmbr/.style={font=\scriptsize,yshift=-.25cm,anchor=west}
+]
+
+\newcounter{n}
+
+\foreach \y in {1,...,3} {
+  \setcounter{n}{0}
+  \foreach \x in {1,...,4} {
+    \ifthenelse{\y<3}{
+      \node[rect] at (\x,-\y) {};
+      \node[nmbr] at (\x,-\y) {\ifthenelse{\x=1}{\y} {
+        \ifthenelse{\arabic{n}=1}{}{\arabic{n}}n+\y}};
+      \stepcounter{n}
+    }{
+      \stepcounter{n}
+      \node[none] at (\x,-\y) {};
+      \node[rect] at (\x,-\y-1) {};
+      \node[nmbr] at (\x,-\y-1) {\ifthenelse{\x=1}{n}{\arabic{n}n}}; 
+    }
+  }
+}
+
+\end{tikzpicture}
 
 \begin{figure}[H]
     \centering
@@ -182,25 +227,19 @@ Lánc & Qubitek & Regiszter & Operátor &  \cellcolor{applegreen!30} ''On-the-fl
 
 \begin{frame}{Operátor végrehajtás általánosan}
 
-Az összes regiszterre: hagyományos mátrixszorzás.
+TODO:
 
-\vspace{-0.4cm}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.3\textwidth]{figures/hagyomanyos_matrixszorzas.png}
-\end{figure}
-
-A rendszerben lévő regiszterek egy részhalmazára?
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.4\textwidth]{figures/celregiszterek.png}
-\end{figure}
+\begin{itemize}
+    \item Első két qubitra.
+    \item Utolsó két qubitra.
+    \item Köztes esetek: ebből van sok.
+\end{itemize}
 
 \end{frame}
 
-
 \begin{frame}{Mappelés}
+
+TODO: zavaros nyilas ábra.
 
 \begin{figure}[H]
     \centering
@@ -210,7 +249,9 @@ A rendszerben lévő regiszterek egy részhalmazára?
 \end{frame}
 
 
-\begin{frame}{Végrehajtás}
+\begin{frame}{Végrehajtás (párhuzamosíthatóan)}
+
+Tipikus eset.
 
 \begin{figure}[H]
     \centering
@@ -219,33 +260,17 @@ A rendszerben lévő regiszterek egy részhalmazára?
 
 \end{frame}
 
-\begin{frame}{Összegzés}
-
-\begin{itemize}
-    \item Qubit map
-    \item Index map
-    \item Group-by
-    \item Csoportonként applyoljuk az operátort
-    \begin{itemize}
-        \item Nincs szükség egységmátrixszal tenzorszorozni.
-        \item \#parallel-for pragmával ez párhuzamosítható.
-    \end{itemize}
-    \item Index map invertálása
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}{Operátorok}
+\begin{frame}{Operátorok megvalósítása}
 
 \begin{itemize}
     \item Visitor minta (inverzió):
     \begin{itemize}
         \item Operátornak odaadom a regisztert, végrehajtja magát rajta.
-        \item Belső működés eltakarva.
+        \item Belső működés eltakarva: mátrix reprezentáció nem szükséges.
     \end{itemize}
     \item Strategy minta:
     \begin{itemize}
-    \item Áltlalános operátor interfész, típusonként egyedi implementációval.
+    \item Egységes algoritmus interfész: több lehetséges implementáció.
     \end{itemize}
     \item Operátor csak egy handle, példány nem foglal memóriát.
 \end{itemize}
@@ -254,7 +279,7 @@ Megvalósítás:
 \begin{itemize}
     \item "On-the-fly" operátorok:
     \begin{itemize}
-        \item Egy-egy regiszterrel egyező méretű sort generálok belőlük.
+        \item A mátrix egy sorát generálom.
         \item Hadamard, Grover.
     \end{itemize}
     \item "Függvény-alapú" operátorok:
@@ -273,8 +298,8 @@ Megvalósítás:
 \begin{itemize}
 \item Eredmények:
 \begin{itemize}
-    \item Ritka mátrixosan tárolt regiszerek.
-    \item Regiszerkezelés tetszőleges célregiszerekkel.
+    \item Ritka mátrixosan tárolt regiszterek.
+    \item Regiszterkezelés tetszőleges célregiszterekkel.
     \item ''On-the-fly'' operátorok: Hadamard, Grover.
     \item ''Függvény-alapú'' operátorok: Sum, Multi-Controlled NOT.
     \item Könnyű bővíthetőség új operátorral.
@@ -285,6 +310,43 @@ Megvalósítás:
     \item Döntési fa alapú tárolás kipróbálása.
 \end{itemize}
 \end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}{Bíráló kérdései - 1.}
+
+A dolgozat bevezetésében írja, hogy az egyik motivációt a munkához a bioinformatika adja, ezen belül is a fehérje feltekeredés (protein folding) vizsgálata.
+
+A dolgozatban azonban - érthető okokból - egy egyszerűbb problémával, a Sudoku általános változatával dolgozik.
+
+Mégis, meg tudná mondani, hogyan lehetne (milyen jellegű továbbfejlesztésekkel) a kidolgozott eljárást a bioinformatikában használni?
+\end{frame}
+
+\begin{frame}{Bíráló kérdései - 2.}
+
+Mi a szerző várakozása a kifejlesztett keretrendszer működési korlátait illetően?
+
+Például:
+
+Hány qubites Grover-keresést fog tudni implementálni? Mekkora n esetén tudja implementálni a Sudoku verifiert?
+
+A maximális méretű problémát implementáló kód mennyi idő alatt fog lefutni egy laptopon?
+
+\end{frame}
+
+\begin{frame}{Bíráló kérdései - 3.}
+A keretrendszer struktúrájában vagy implementációjában meg kell-e különböztetni a CPU-n és a GPU-n való futtatás esetét?
+\end{frame}
+
+\begin{frame}{Bíráló kérdései - 4.}
+
+Valódi kvantumszámítógépekben a kvantumbitek és a környezet kölcsönhatása dekoherenciához vezet.
+
+A Grover-keresés működőképes marad-e, ha a dekoherenciát figyelembe vesszük a szimuláció során?
+
+Lehetséges-e a dolgozatban kifejlesztett hatékony keretrendszert általánosítani dekoherencia jelenléte esetére, és ha igen, akkor meg lehet-e ezt tenni úgy hogy a hatékonyság is megmarad?
 
 \end{frame}
 
