@@ -238,11 +238,20 @@ A rendszerben lévő regiszterek egy részhalmazára?
 \begin{frame}{Operátorok}
 
 \begin{itemize}
-    \item Visitor minta / inverzió:
+    \item Visitor minta (inverzió):
     \begin{itemize}
         \item Operátornak odaadom a regisztert, végrehajtja magát rajta.
         \item Belső működés eltakarva.
     \end{itemize}
+    \item Strategy minta:
+    \begin{itemize}
+    \item Áltlalános operátor interfész, típusonként egyedi implementációval.
+    \end{itemize}
+    \item Operátor csak egy handle, példány nem foglal memóriát.
+\end{itemize}
+
+Megvalósítás:    
+\begin{itemize}
     \item "On-the-fly" operátorok:
     \begin{itemize}
         \item Egy-egy regiszterrel egyező méretű sort generálok belőlük.
