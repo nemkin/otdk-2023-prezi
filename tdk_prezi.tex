@@ -186,7 +186,7 @@ Lánc & Qubitek & Regiszter & Operátor &  \cellcolor{applegreen!30} ''On-the-fl
 \vspace{2mm}
 \begin{itemize}
     \item Qiskit, stb. nyílt forráskódúak...
-    \item ...de szerves része a kódnak az operátor tárolása.
+    \item ...de szerves része a kódnak az operátor tárolása
     \item $\rightarrow$ saját szimulátor implementáció.
 \end{itemize}
 
@@ -201,6 +201,8 @@ Lánc & Qubitek & Regiszter & Operátor &  \cellcolor{applegreen!30} ''On-the-fl
     \item Méretek: $2^{n_1}, \dots{}, 2^{n_s} \rightarrow \prod\limits_{i=1}^{s}2^{n_i}$.
 \end{itemize}
 
+\begin{columns}
+\begin{column}{0.6\textwidth}
 \begin{tikzpicture}
 
 \def\start{0}
@@ -258,15 +260,21 @@ Lánc & Qubitek & Regiszter & Operátor &  \cellcolor{applegreen!30} ''On-the-fl
 \node[anchor=east] at (\start, -5*\h + 0.5*\h) {$\ket{1\dots{}11}$};
 \node[align=center] at (\start + 0.5*\w, -5*\h + 0.5*\h) {$c_{2^{n_s}-1}$};
 
+
 % Rightarrow
 
-\node[align=center] at (7.3, -2*\h) {$\rightarrow$};
+\node[align=center] at (7, -2*\h) {$\Rightarrow$};
 
+\end{tikzpicture}
+
+\end{column}
+\begin{column}{0.4\textwidth}
+
+\begin{tikzpicture}
 % Uccso osszes
-
-
-\def\start{11.5}
+\def\start{0}
 \def\w{2}
+\def\h{0.5}
 
 \node[anchor=south] at (\start+0.5*\w, \h) {$\ket{R_1|\dots{}|R_s}$};
 
@@ -290,6 +298,8 @@ Lánc & Qubitek & Regiszter & Operátor &  \cellcolor{applegreen!30} ''On-the-fl
 \node[align=center] at (\start + 0.5*\w, -9*\h + 0.5*\h) {\scriptsize$c_{2^{n_1}-1,\dots{}, 2^{n_s}-1}$};
 
 \end{tikzpicture}
+\end{column}
+\end{columns}
 
 
 \end{frame}
@@ -299,9 +309,10 @@ Lánc & Qubitek & Regiszter & Operátor &  \cellcolor{applegreen!30} ''On-the-fl
 Példa: $A_{4\times{}4}$ ($2$ qubites) operátor.
 \vspace{0.5cm}
 \begin{columns}
-  \begin{column}[t]{0.05\textwidth}
+  \begin{column}[t]{0.2\textwidth}
   \end{column}
-  \begin{column}[t]{0.4\textwidth}
+  \begin{column}[t]{0.3\textwidth}
+    \centering
     Utolsó 2 qubit-re:
     \begin{gather*}
       \ket{\square{}\dots{}\square{}\blacksquare{}\blacksquare{}} \\
@@ -315,9 +326,8 @@ Példa: $A_{4\times{}4}$ ($2$ qubites) operátor.
      \searrow
     \end{gather*}
   \end{column}
-  \begin{column}[t]{0.1\textwidth}
-  \end{column}
-  \begin{column}[t]{0.4\textwidth}
+  \begin{column}[t]{0.3\textwidth}
+    \centering
     Első 2 qubit-re:
     \begin{gather*}
       \ket{\blacksquare{}\blacksquare{}\square{}\dots{}\square{}} \\
@@ -327,11 +337,11 @@ Példa: $A_{4\times{}4}$ ($2$ qubites) operátor.
         A_{1,0} I & A_{1,1} I & A_{1,2} I & A_{1,3} I \\
         A_{2,0} I & A_{2,1} I & A_{2,2} I & A_{2,3} I \\
         A_{3,0} I & A_{3,1} I & A_{3,2} I & A_{3,3} I \\
-      \end{pmatrix}\\
+      \end{pmatrix}\\[3pt]
      \swarrow
     \end{gather*}
   \end{column}
-  \begin{column}[t]{0.05\textwidth}
+  \begin{column}[t]{0.2\textwidth}
   \end{column}
   \end{columns}
 
@@ -364,11 +374,9 @@ Példa: $A_{4\times{}4}$ ($2$ qubites) operátor.
 
 \begin{frame}{Végrehajtás (párhuzamosíthatóan)}
 
-Tipikus eset.
-
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{figures/vegrehajtas.jpg}
+    \includegraphics[width=\textwidth]{figures/qubit_map_group_by.png}
 \end{figure}
 
 \end{frame}
