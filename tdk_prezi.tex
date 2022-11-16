@@ -186,27 +186,97 @@ Lánc & Qubitek & Regiszter & Operátor &  \cellcolor{applegreen!30} ''On-the-fl
 \end{itemize}
 
 
+
 \begin{tikzpicture}
 
+\def\start{0}
+\def\w{1}
+\def\h{0.5}
+
+\node[anchor=south] at (\start+0.5*\w, \h) {$\ket{R_1}$};
+
+\draw (\start,0) rectangle (\start+\w,\h);
+\node[anchor=east] at (\start,0.5*\h) {$\ket{0\dots{}00}$};
+\node[align=center] at (\start+0.5*\w,0.5*\h) {$c_0$};
+
+\draw (\start,-1*\h) rectangle (\start+\w,0*\h);
+\node[anchor=east] at (\start, -1*\h + 0.5*\h) {$\ket{0\dots{}01}$};
+\node[align=center] at (\start + 0.5*\w, -1*\h + 0.5*\h) {$c_1$};
+
+\draw (\start,-2*\h) rectangle (\start+\w,-1*\h);
+\node[anchor=east] at (\start, -2*\h + 0.5*\h) {$\ket{0\dots{}10}$};
+\node[align=center] at (\start + 0.5*\w, -2*\h + 0.5*\h) {$c_2$};
+
+\draw (\start,-4*\h) rectangle (\start + \w,-2*\h);
+\node[align=center] at (\start + 0.5*\w, -4*\h + \h) {$\vdots{}$};
+
+\draw (\start,-5*\h) rectangle (\start + \w,-4*\h);
+\node[anchor=east] at (\start, -5*\h + 0.5*\h) {$\ket{1\dots{}11}$};
+\node[align=center] at (\start + 0.5*\w, -5*\h + 0.5*\h) {$c_{2^{n_1}-1}$};
+
+% Dots
+
+
+\node[align=center] at (2.3, -2*\h) {$\otimes{}~~\cdots{}~~\otimes{}$};
+
+% Masodik
+
+\def\start{5}
+
+\node[anchor=south] at (\start+0.5*\w, \h) {$\ket{R_s}$};
+
+\draw (\start,0) rectangle (\start+\w,\h);
+\node[anchor=east] at (\start,0.5*\h) {$\ket{0\dots{}00}$};
+\node[align=center] at (\start+0.5*\w,0.5*\h) {$c_0$};
+
+\draw (\start,-1*\h) rectangle (\start+\w,0*\h);
+\node[anchor=east] at (\start, -1*\h + 0.5*\h) {$\ket{0\dots{}01}$};
+\node[align=center] at (\start + 0.5*\w, -1*\h + 0.5*\h) {$c_1$};
+
+\draw (\start,-2*\h) rectangle (\start+\w,-1*\h);
+\node[anchor=east] at (\start, -2*\h + 0.5*\h) {$\ket{0\dots{}10}$};
+\node[align=center] at (\start + 0.5*\w, -2*\h + 0.5*\h) {$c_2$};
+
+\draw (\start,-4*\h) rectangle (\start + \w,-2*\h);
+\node[align=center] at (\start + 0.5*\w, -4*\h + \h) {$\vdots{}$};
+
+\draw (\start,-5*\h) rectangle (\start + \w,-4*\h);
+\node[anchor=east] at (\start, -5*\h + 0.5*\h) {$\ket{1\dots{}11}$};
+\node[align=center] at (\start + 0.5*\w, -5*\h + 0.5*\h) {$c_{2^{n_s}-1}$};
+
+% Rightarrow
+
+\node[align=center] at (7.3, -2*\h) {$\rightarrow$};
+
+% Uccso osszes
+
+
+\def\start{11.5}
+\def\w{2}
+
+\node[anchor=south] at (\start+0.5*\w, \h) {$\ket{R_1|\dots{}|R_s}$};
+
+\draw (\start,0) rectangle (\start+\w,\h);
+\node[anchor=east] at (\start,0.5*\h) {$\ket{0\dots{}00,\dots{},0\dots{}00}$};
+\node[align=center] at (\start+0.5*\w,0.5*\h) {$c_{0,0}$};
+
+\draw (\start,-1*\h) rectangle (\start+\w,0*\h);
+\node[anchor=east] at (\start, -1*\h + 0.5*\h) {$\ket{0\dots{}00,\dots{},0\dots{}01}$};
+\node[align=center] at (\start + 0.5*\w, -1*\h + 0.5*\h) {$c_{0,1}$};
+
+\draw (\start,-2*\h) rectangle (\start+\w,-1*\h);
+\node[anchor=east] at (\start, -2*\h + 0.5*\h) {$\ket{0\dots{}00,\dots{},0\dots{}10}$};
+\node[align=center] at (\start + 0.5*\w, -2*\h + 0.5*\h) {$c_{0,2}$};
+
+\draw (\start,-4*\h) rectangle (\start + \w,-2*\h);
+\node[align=center] at (\start + 0.5*\w, -4*\h + \h) {$\vdots{}$};
+
+\draw (\start,-5*\h) rectangle (\start + \w,-4*\h);
+\node[anchor=east] at (\start, -5*\h + 0.5*\h)  {$\ket{1\dots{}11,\dots{},1\dots{}11}$};
+\node[align=center] at (\start + 0.5*\w, -5*\h + 0.5*\h) {$c_{2^{n_1}-1, 2^{n_s}-1}$};
+
 \end{tikzpicture}
 
-
-\begin{tikzpicture}[
-    rect/.style={rectangle,,draw=black,text width=.5cm,text height=.25cm},
-    none/.style={rectangle,draw=gray!20,text width=.5cm,text height=.25cm},
-    nmbr/.style={font=\scriptsize,xshift=-.3cm,anchor=east}
-]
-
-\node[rect] at (0, 0) {};
-\node[nmbr] at (0, 0) {Cucc};
-
-
-\end{tikzpicture}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{figures/osszefonodas.jpg}
-\end{figure}
 
 \end{frame}
 
