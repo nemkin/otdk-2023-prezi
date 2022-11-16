@@ -85,7 +85,7 @@
     \end{itemize}
     \item \textbf{Kódolás}:
     \begin{itemize}
-        \item Origóból, lépésenként $6$ irány $=$ $6$ ''qubit''.
+        \item Origóból, lépésenként $6$ irány $=$ $6$ kvantumbit (qubit).
     \end{itemize}
     \item \textbf{Orákulum}: 
     \begin{itemize}
@@ -109,13 +109,26 @@
 
 \end{frame}
 
-\begin{frame}[t]{Cél}
+\begin{frame}[t]{Feladat}
 
 \begin{itemize}
-    \item Algoritmus kipróbálása és elemzése.
-    \item Eszköztár: Regiszterek + Hadamard, Grover, Sum, MC-NOT
-    \item Kvantumszámítógép: Publikusan nem elérhető (elég nagy).
-    \item Klasszikus szimuláció: Túl sok memóriát fogyaszt.
+    \item Cél:
+    \begin{itemize}
+      \item Kvantumalgoritmusok kipróbálása és elemzése.
+    \end{itemize}
+    \item Eszköztár: 
+    \begin{itemize}
+      \item Regiszterek.
+      \item Operátorok: Hadamard, Grover, Sum, MC-NOT.
+      \begin{itemize}
+        \item ''Fekete doboz''-ként szimulálni.
+      \end{itemize}
+    \end{itemize}
+    \item Probléma:
+    \begin{itemize}
+      \item Kvantumszámítógép: Publikusan nem elérhető (elég nagy).
+      \item Klasszikus szimuláció: Túl sok memóriát fogyaszt.
+    \end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -128,10 +141,10 @@ Lánc & Qubitek & Regiszter & Operátor \\
 \hline
 2 & 6 &  1 KB &  64 KB \\
 3 & 12 &  64 KB &  256 MB \\
-4 & 18 &  4 MB & \color{red} 1 TB \\
-5 & 24 &  256 MB & \color{red} 4 PB \\
-6 & 30 &  16 GB & \color{red} 16384 PB \\
-7 & 36 & \color{red} 1 TB & \color{red} 67108864 PB
+4 & 18 &  4 MB & \color{red} \textbf{1 TB} \\
+5 & 24 &  256 MB & \color{red} \textbf{4 PB} \\
+6 & 30 &  16 GB & \color{red} \textbf{16384 PB} \\
+7 & 36 & \color{red} \textbf{1 TB} & \color{red} \textbf{67108864 PB}
 \end{tabular}
 \pause
 \vspace{2mm}
@@ -164,10 +177,10 @@ Lánc & Qubitek & Regiszter & Operátor &  \cellcolor{applegreen!30} ''On-the-fl
 \hline
 2 & 6 &  1 KB &  64 KB &  1 KB & 0 B \\
 3 & 12 &  64 KB &  256 MB &  64 KB & 0 B \\
-4 & 18 &  4 MB & \color{red} 1 TB &  4 MB & 0 B  \\
-5 & 24 &  256 MB & \color{red} 4 PB &  256 MB & 0 B \\
-6 & 30 &  16 GB & \color{red} 16384 PB &  16 GB & 0 B\\
-7 & 36 & \color{red} 1 TB & \color{red} 67108864 PB & \color{red} 1 TB & 0 B
+4 & 18 &  4 MB & \color{red} \textbf{1 TB} &  4 MB & 0 B  \\
+5 & 24 &  256 MB & \color{red} \textbf{4 PB} &  256 MB & 0 B \\
+6 & 30 &  16 GB & \color{red} \textbf{16384 PB} &  16 GB & 0 B\\
+7 & 36 & \color{red} \textbf{1 TB} & \color{red} \textbf{67108864 PB} & \color{red} \textbf{1 TB} & 0 B
 \end{tabular}
 \pause
 \vspace{2mm}
@@ -286,13 +299,13 @@ Lánc & Qubitek & Regiszter & Operátor &  \cellcolor{applegreen!30} ''On-the-fl
 Példa: $A_{4\times{}4}$ ($2$ qubites) operátor.
 \vspace{0.5cm}
 \begin{columns}
-  \begin{column}[t]{0.25\textwidth}
+  \begin{column}[t]{0.05\textwidth}
   \end{column}
-  \begin{column}[t]{0.2\textwidth}
-    Első 2 qubit-re:
+  \begin{column}[t]{0.4\textwidth}
+    Utolsó 2 qubit-re:
     \begin{gather*}
-      \ket{\blacksquare{}\blacksquare{}\square{}\dots{}\square{}} \\
-      \Downarrow \\
+      \ket{\square{}\dots{}\square{}\blacksquare{}\blacksquare{}} \\
+      \Downarrow  \\
       \begin{pmatrix}
         A & 0  & \dots{} & 0 \\
        0 & A  & \dots{} & 0 \\ 
@@ -304,19 +317,21 @@ Példa: $A_{4\times{}4}$ ($2$ qubites) operátor.
   \end{column}
   \begin{column}[t]{0.1\textwidth}
   \end{column}
-  \begin{column}[t]{0.2\textwidth}
-    Utolsó 2 qubit-re:
+  \begin{column}[t]{0.4\textwidth}
+    Első 2 qubit-re:
     \begin{gather*}
-      \ket{\square{}\dots{}\square{}\blacksquare{}\blacksquare{}} \\
-      \Downarrow \\[16pt]
+      \ket{\blacksquare{}\blacksquare{}\square{}\dots{}\square{}} \\
+      \Downarrow \\
       \begin{pmatrix}
-        A_{0,0} I & A_{0,1} I  \\
-        A_{1,0} I & A_{1,1} I  \\
-      \end{pmatrix} \\[16pt]
+        A_{0,0} I & A_{0,1} I & A_{0,2} I & A_{0,3} I  \\
+        A_{1,0} I & A_{1,1} I & A_{1,2} I & A_{1,3} I \\
+        A_{2,0} I & A_{2,1} I & A_{2,2} I & A_{2,3} I \\
+        A_{3,0} I & A_{3,1} I & A_{3,2} I & A_{3,3} I \\
+      \end{pmatrix}\\
      \swarrow
     \end{gather*}
   \end{column}
-  \begin{column}[t]{0.25\textwidth}
+  \begin{column}[t]{0.05\textwidth}
   \end{column}
   \end{columns}
 
@@ -350,12 +365,10 @@ Tipikus eset.
 
 \begin{frame}{Operátorok megvalósítása}
 
+Megvalósítás:
+
 \begin{itemize}
     \item Visitor minta (inverzió):
-    \begin{itemize}
-        \item Operátornak odaadom a regisztert, végrehajtja magát rajta.
-        \item Belső működés eltakarva: mátrix reprezentáció nem szükséges.
-    \end{itemize}
     \begin{itemize}
         \item Operátornak odaadom a regisztert, végrehajtja magát rajta.
         \item Belső működés eltakarva: mátrix reprezentáció nem szükséges.
@@ -367,11 +380,11 @@ Tipikus eset.
     \item Operátor csak egy handle, példány nem foglal memóriát.
 \end{itemize}
 
-Megvalósítás:    
+Végrehajtás:
 \begin{itemize}
     \item "On-the-fly" operátorok:
     \begin{itemize}
-        \item A mátrix egy sorát generálom.
+        \item A mátrix egy sorát generálom $\rightarrow$ skalárszorzás.
         \item Hadamard, Grover.
     \end{itemize}
     \item "Függvény-alapú" operátorok:
@@ -422,14 +435,29 @@ Mi a szerző várakozása a kifejlesztett keretrendszer működési korlátait i
 
 Például:
 
-Hány qubites Grover-keresést fog tudni implementálni? Mekkora n esetén tudja implementálni a Sudoku verifiert?
-
+Hány qubites Grover-keresést fog tudni implementálni?
+\begin{itemize}
+  \item 30 qubit körüli.
+\end{itemize}
+Mekkora n esetén tudja implementálni a Sudoku verifiert?
+\begin{itemize}
+  \item $3\times{}3$-mas Sudoku táblát lehet ($27$ qubit) $\Leftrightarrow$ $4\times{}4$-es táblát már nem ($64$ qubit).
+\end{itemize}
 A maximális méretű problémát implementáló kód mennyi idő alatt fog lefutni egy laptopon?
-
+\begin{itemize}
+  \item A tároláshoz $27$ qubitre + $1$ orákulum kimeneti qubitre van szükség.
+  \item Az orákulum implementálása ''Függvény-alapú'' operátorral megoldható.
+  \item Becsléseim szerint egy-két napon belül lefutna.
+  \item Qiskit-ben ezt elkészítettem, ott a $3\times{}3$-mas Sudoku táblához $67$ TB memóriára lenne szükség.
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Bíráló kérdései - 3.}
 A keretrendszer struktúrájában vagy implementációjában meg kell-e különböztetni a CPU-n és a GPU-n való futtatás esetét?
+\begin{itemize}
+  \item "On-the-fly" típusú operátorok könnyen implementálhatóak GPU-n, a meglévő keretrendszerben.
+  \item "Függvény-alapú" operátorok nem vihetők át GPU-ra (nincs skalárszorzás) $\rightarrow$ sokszálú CPU-val párhuzamosíthatók.
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Bíráló kérdései - 4.}
@@ -437,8 +465,14 @@ A keretrendszer struktúrájában vagy implementációjában meg kell-e különb
 Valódi kvantumszámítógépekben a kvantumbitek és a környezet kölcsönhatása dekoherenciához vezet.
 
 A Grover-keresés működőképes marad-e, ha a dekoherenciát figyelembe vesszük a szimuláció során?
-
+\begin{itemize}
+  \item A dekoherencia csökkenti a találati valószínűséget.
+  \item Amíg ez nem lép túl egy korlátot, addig többszöri ismételt futtatással javítható.
+\end{itemize}
 Lehetséges-e a dolgozatban kifejlesztett hatékony keretrendszert általánosítani dekoherencia jelenléte esetére, és ha igen, akkor meg lehet-e ezt tenni úgy hogy a hatékonyság is megmarad?
+\begin{itemize}
+  \item A dekoherencia modellezhető bizonyos valószínűséggel alkalmazott mátrixműveletekkel, ezek operátorként megvalósíthatók ebben a rendszerben.
+\end{itemize}
 
 \end{frame}
 
