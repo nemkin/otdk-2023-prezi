@@ -70,8 +70,10 @@
 
 
 \begin{frame}{Motiváció: "Protein folding" megoldása kvantumalgoritmussal}
+
 \begin{columns}
 \begin{column}{0.55\textwidth}
+\vspace{-0.3cm}
 \begin{itemize}
     \item \textbf{Protein}:
     \begin{itemize}
@@ -80,12 +82,12 @@
           \item \color{red} Piros = Hidrofób (''vízkerülő'').
           \item \color{blue} Kék = Poláris (''vízszerető'').
         \end{itemize}
-        \item Hajtogatás: 3D kockarácson elhelyezés.
-        \item Cél: Minimális energiájú elhelyezés megtalálása.
+        \item Hajtogatás: 3D kockarács pontjain.
+        \item Cél: Minimális energiájú elhelyezés.
     \end{itemize}
     \item \textbf{Kódolás}:
     \begin{itemize}
-        \item Origóból, lépésenként $6$ irány $=$ $6$ kvantumbit (qubit).
+        \item Origóból, lépésenként \\$6$ irány $=$ $6$ kvantumbit (qubit).
     \end{itemize}
     \item \textbf{Orákulum}: 
     \begin{itemize}
@@ -99,13 +101,16 @@
 \end{itemize}
 \end{column}
 \begin{column}{0.45\textwidth}
+\vspace{-0.2cm}
 \begin{figure}[H]
 \center
 \includegraphics[width=\textwidth]{./figures/Protein-folds-with-length-36-amino-acids-18-contacts.png}
-\caption{Egy összehajtogatott protein.}
+\caption{Egy összehajtogatott protein.\footnotemark}
 \end{figure}
 \end{column}
 \end{columns}
+
+\footnotetext[1]{\scriptsize Forrás: Traykov et al. (2018). Protein Folding in 3D Lattice HP Model Using Heuristic Algorithm.}
 
 \end{frame}
 
