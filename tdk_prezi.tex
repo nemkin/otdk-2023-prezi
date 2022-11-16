@@ -165,21 +165,96 @@ Lánc & Qubitek & Regiszter & Operátor &  \cellcolor{applegreen!30} ''On-the-fl
 
 \end{frame}
 
-\begin{frame}{Regiszterkezelés}
 
+\begin{frame}{Kvantumregiszterek állapotának tárolása}
 
+\begin{itemize}
+    \item Minden bitsorozathoz egy komplex valószínűségi amplítúdó.
+    \item Szuperpozíció és összefonódás $\rightarrow$ több regiszterre ezek Descartes-szorzatát kell tárolni.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/osszefonodas.jpg}
+\end{figure}
 
 \end{frame}
 
-\begin{frame}{''On-the-fly'' operátorok}
+\begin{frame}{Operátor végrehajtás általánosan}
 
+Az összes regiszterre: hagyományos mátrixszorzás.
 
+\vspace{-0.4cm}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{figures/hagyomanyos_matrixszorzas.png}
+\end{figure}
+
+A rendszerben lévő regiszterek egy részhalmazára?
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/celregiszterek.png}
+\end{figure}
 
 \end{frame}
 
 
-\begin{frame}{''Függvény-alapú'' operátorok}
+\begin{frame}{Mappelés}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/mappeles.png}
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}{Végrehajtás}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/vegrehajtas.jpg}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Összegzés}
+
+\begin{itemize}
+    \item Qubit map
+    \item Index map
+    \item Group-by
+    \item Csoportonként applyoljuk az operátort
+    \begin{itemize}
+        \item Nincs szükség egységmátrixszal tenzorszorozni.
+        \item \#parallel-for pragmával ez párhuzamosítható.
+    \end{itemize}
+    \item Index map invertálása
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Operátorok}
+
+\begin{itemize}
+    \item Visitor minta / inverzió:
+    \begin{itemize}
+        \item Operátornak odaadom a regisztert, végrehajtja magát rajta.
+        \item Belső működés eltakarva.
+    \end{itemize}
+    \item "On-the-fly" operátorok:
+    \begin{itemize}
+        \item Egy-egy regiszterrel egyező méretű sort generálok belőlük.
+        \item Hadamard, Grover.
+    \end{itemize}
+    \item "Függvény-alapú" operátorok:
+    \begin{itemize}
+        \item $u: \ket{0\dots{}0,\text{in}} \rightarrow \ket{\text{out},\text{in}}$
+        \item Sum: $\sum: \ket{0\dots{}0,\text{in}} \rightarrow \ket{\text{count}(\text{in}),\text{in}}$
+        \item MC-NOT: $\text{mcnot}: \ket{0,\text{in}} \rightarrow \ket{\text{any}(\text{in}),\text{in}}$
+    \end{itemize}
+\end{itemize}
 
 
 \end{frame}
