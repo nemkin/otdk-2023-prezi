@@ -194,27 +194,12 @@ Lánc & Qubitek & Regiszter & Operátor &  \cellcolor{applegreen!30} ''On-the-fl
 \begin{tikzpicture}[
     rect/.style={rectangle,,draw=black,text width=.5cm,text height=.25cm},
     none/.style={rectangle,draw=gray!20,text width=.5cm,text height=.25cm},
-    nmbr/.style={font=\scriptsize,yshift=-.25cm,anchor=west}
+    nmbr/.style={font=\scriptsize,xshift=-.3cm,anchor=east}
 ]
 
-\newcounter{n}
+\node[rect] at (0, 0) {};
+\node[nmbr] at (0, 0) {Cucc};
 
-\foreach \y in {1,...,3} {
-  \setcounter{n}{0}
-  \foreach \x in {1,...,4} {
-    \ifthenelse{\y<3}{
-      \node[rect] at (\x,-\y) {};
-      \node[nmbr] at (\x,-\y) {\ifthenelse{\x=1}{\y} {
-        \ifthenelse{\arabic{n}=1}{}{\arabic{n}}n+\y}};
-      \stepcounter{n}
-    }{
-      \stepcounter{n}
-      \node[none] at (\x,-\y) {};
-      \node[rect] at (\x,-\y-1) {};
-      \node[nmbr] at (\x,-\y-1) {\ifthenelse{\x=1}{n}{\arabic{n}n}}; 
-    }
-  }
-}
 
 \end{tikzpicture}
 
