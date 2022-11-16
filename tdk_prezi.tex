@@ -182,10 +182,8 @@ Lánc & Qubitek & Regiszter & Operátor &  \cellcolor{applegreen!30} ''On-the-fl
 \begin{itemize}
     \item Minden bitsorozathoz egy komplex valószínűségi amplítúdó.
     \item Szuperpozíció és összefonódás $\rightarrow$ indexek Descartes-szorzata.
-    \item TODO: $2^{n_1}, \dots{}, 2^{n_s} \rightarrow \prod\limits_{i=1}^{s}2^{n_i}$.
+    \item Méretek: $2^{n_1}, \dots{}, 2^{n_s} \rightarrow \prod\limits_{i=1}^{s}2^{n_i}$.
 \end{itemize}
-
-
 
 \begin{tikzpicture}
 
@@ -258,22 +256,22 @@ Lánc & Qubitek & Regiszter & Operátor &  \cellcolor{applegreen!30} ''On-the-fl
 
 \draw (\start,0) rectangle (\start+\w,\h);
 \node[anchor=east] at (\start,0.5*\h) {$\ket{0\dots{}00,\dots{},0\dots{}00}$};
-\node[align=center] at (\start+0.5*\w,0.5*\h) {$c_{0,0}$};
+\node[align=center] at (\start+0.5*\w,0.5*\h) {$c_{0,\dots{},0}$};
 
 \draw (\start,-1*\h) rectangle (\start+\w,0*\h);
 \node[anchor=east] at (\start, -1*\h + 0.5*\h) {$\ket{0\dots{}00,\dots{},0\dots{}01}$};
-\node[align=center] at (\start + 0.5*\w, -1*\h + 0.5*\h) {$c_{0,1}$};
+\node[align=center] at (\start + 0.5*\w, -1*\h + 0.5*\h) {$c_{0,\dots{},1}$};
 
 \draw (\start,-2*\h) rectangle (\start+\w,-1*\h);
 \node[anchor=east] at (\start, -2*\h + 0.5*\h) {$\ket{0\dots{}00,\dots{},0\dots{}10}$};
-\node[align=center] at (\start + 0.5*\w, -2*\h + 0.5*\h) {$c_{0,2}$};
+\node[align=center] at (\start + 0.5*\w, -2*\h + 0.5*\h) {$c_{0,\dots{},2}$};
 
-\draw (\start,-4*\h) rectangle (\start + \w,-2*\h);
-\node[align=center] at (\start + 0.5*\w, -4*\h + \h) {$\vdots{}$};
+\draw (\start,-8*\h) rectangle (\start + \w,-2*\h);
+\node[align=center] at (\start + 0.5*\w, -6*\h + \h) {$\vdots{}$};
 
-\draw (\start,-5*\h) rectangle (\start + \w,-4*\h);
-\node[anchor=east] at (\start, -5*\h + 0.5*\h)  {$\ket{1\dots{}11,\dots{},1\dots{}11}$};
-\node[align=center] at (\start + 0.5*\w, -5*\h + 0.5*\h) {$c_{2^{n_1}-1, 2^{n_s}-1}$};
+\draw (\start,-9*\h) rectangle (\start + \w,-8*\h);
+\node[anchor=east] at (\start, -9*\h + 0.5*\h)  {$\ket{1\dots{}11,\dots{},1\dots{}11}$};
+\node[align=center] at (\start + 0.5*\w, -9*\h + 0.5*\h) {\scriptsize$c_{2^{n_1}-1,\dots{}, 2^{n_s}-1}$};
 
 \end{tikzpicture}
 
