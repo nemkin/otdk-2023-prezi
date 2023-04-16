@@ -419,9 +419,8 @@ Példa: $A_{4\times{}4}$ ($2$ qubites) operátor.
 
 \end{frame}
 
-\begin{frame}{Összegzés}
 
-\textbf{Eredmények}:
+\begin{frame}{Eredmények}
 
 Ha a regiszter $2x$ belefér a memóriába akkor az egész algoritmus is.
 
@@ -439,26 +438,22 @@ Ha a regiszter $2x$ belefér a memóriába akkor az egész algoritmus is.
     \item Könnyen bővíthető architektúra.
     \item Forráskód: \color{blue}\href{https://github.com/nemkin/qmem}{https://github.com/nemkin/qmem}\color{black} ~ (MIT licensz).
 \end{itemize}
+\end{frame}
 
-\textbf{Jövőbeli tervek}:
-
+\begin{frame}{Kitekintés}
+Visszajelzés:
 \begin{itemize}
-    \item Protein folding algoritmus implementálása.
-    \item Döntési fa alapú regisztertárolás kipróbálása.
+    \item Bioinformatikai felhasználás (még) messze van.
+    \item Most: Elméleti munka!
+    \begin{itemize}
+        \item Mire lesz jó 10 éven belül? (Kvantumtél?)
+        \item Túl kevés kvantumalgoritmust találtak ki.
+        \item Zajos kvantumszámítás szimulálása (Kraus operátorok tiszta állapotokon).
+    \end{itemize}    
 \end{itemize}
-
 \end{frame}
 
 \begin{frame}{Bíráló kérdései - 1.}
-
-A dolgozat bevezetésében írja, hogy az egyik motivációt a munkához a bioinformatika adja, ezen belül is a fehérje feltekeredés (protein folding) vizsgálata.
-
-A dolgozatban azonban - érthető okokból - egy egyszerűbb problémával, a Sudoku általános változatával dolgozik.
-
-Mégis, meg tudná mondani, hogyan lehetne (milyen jellegű továbbfejlesztésekkel) a kidolgozott eljárást a bioinformatikában használni?
-\end{frame}
-
-\begin{frame}{Bíráló kérdései - 2.}
 
 Mi a szerző várakozása a kifejlesztett keretrendszer működési korlátait illetően?
 
@@ -481,15 +476,7 @@ A maximális méretű problémát implementáló kód mennyi idő alatt fog lefu
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Bíráló kérdései - 3.}
-A keretrendszer struktúrájában vagy implementációjában meg kell-e különböztetni a CPU-n és a GPU-n való futtatás esetét?
-\begin{itemize}
-  \item "On-the-fly" típusú operátorok könnyen implementálhatóak GPU-n, a meglévő keretrendszerben.
-  \item "Függvény-alapú" operátorok nem vihetők át GPU-ra (nincs skalárszorzás) $\rightarrow$ sokszálú CPU-val párhuzamosíthatók.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Bíráló kérdései - 4.}
+\begin{frame}{Bíráló kérdései - 2.}
 
 Valódi kvantumszámítógépekben a kvantumbitek és a környezet kölcsönhatása dekoherenciához vezet.
 
